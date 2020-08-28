@@ -1,6 +1,19 @@
 # Software Engineer pre-interview question
 
-Please [fork][forkFromGithub] this repository to your own GitHub accounts. You can create one using this [link][createAccount].
+The program is implemented in a partially point-free and functional-programming style. Using Knuth's Algorithm X with a circular doubly linked data-structure to enable fast puzzle solving.
+
+## Quickstart
+
+1. To print the sum of all **Sudoku** as a list, execute
+
+    ```bash
+    npm start
+    ```
+   
+2. To run all **unit-test**, execute
+    ```bash
+    npm test
+    ```
 
 ## Background
 
