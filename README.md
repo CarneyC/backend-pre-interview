@@ -1,6 +1,6 @@
 # Software Engineer pre-interview question
 
-The program is implemented in a partially point-free and functional-programming style. Using Knuth's Algorithm X with dancing link technique to enable fast puzzle solving.
+The program is implemented in a partially point-free and functional-programming style. Using Knuth's Algorithm X with dancing link technique to enable efficient puzzle solving.
 
 ## Quickstart
 
