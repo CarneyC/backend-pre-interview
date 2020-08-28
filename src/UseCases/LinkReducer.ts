@@ -1,6 +1,7 @@
 import * as Link from "../Functions/Link";
 import { HeaderLink } from "../Functions/Link";
 import * as E from "fp-ts/lib/Either";
+import * as IOE from "fp-ts/lib/IOEither";
 import { concat } from "ramda";
 
 // getSmallestHeaderLink :: HeaderLink -> HeaderLink;
@@ -27,9 +28,12 @@ export const getSmallestHeaderLink = (
 };
 
 // reduceHeaderLink :: HeaderLink -> Either [Link] Error
+// returns a IOEither due to
+// HeaderLink's internal state being updated
+// as a side effect during the iteration process
 export const reduceHeaderLink = (
   rootLink: Link.HeaderLink
-): E.Either<Error, Link.Link[]> => {
+): IOE.IOEither<Error, Link.Link[]> => (): E.Either<Error, Link.Link[]> => {
   if (rootLink.right === rootLink) {
     return E.right([]);
   } else {
@@ -55,7 +59,7 @@ export const reduceHeaderLink = (
           linkToCover.header.cover();
         }
 
-        const reducedSolution = reduceHeaderLink(rootLink);
+        const reducedSolution = reduceHeaderLink(rootLink)();
 
         if (E.isRight(reducedSolution)) {
           return E.map(concat(partialSolution))(reducedSolution);

@@ -1,13 +1,13 @@
 import * as Sample from "./Sample";
 import * as SudokuSolver from "../../../../src/UseCases/SudokuSolver";
 import chai from "chai";
-import * as E from "fp-ts/lib/Either";
+import * as TE from "fp-ts/lib/TaskEither";
 
 const { expect } = chai;
 
 describe("SudokuSolver", function () {
   describe("#solveSudokuMatrix()", function () {
-    it("should return a solved Sudoku matrix", function () {
+    it("should return a solved Sudoku matrix", async function () {
       const expectedMatrix = Sample.getSudokuMatrixSolution();
 
       const sudokuMatrix = Sample.getSudokuMatrix();
@@ -17,7 +17,7 @@ describe("SudokuSolver", function () {
         numberOfValues: 9,
       });
 
-      const actualMatrix = E.getOrElse(() => null)(solvedEither);
+      const actualMatrix = await TE.getOrElse(() => null)(solvedEither)();
 
       expect(actualMatrix).to.deep.equal(expectedMatrix);
     });
